@@ -24,7 +24,7 @@ public class CurrencyController {
     }
 
     /**
-     * This end point creates currencies
+     * This endpoint creates currencies
      * @param currencyDto CurrencyDto
      * @return ResponseEntity
      */

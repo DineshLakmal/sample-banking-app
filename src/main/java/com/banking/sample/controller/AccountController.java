@@ -21,7 +21,7 @@ public class AccountController {
     }
 
     /**
-     * This endpoints deposit money into a given account
+     * This endpoint deposits money into a given account
      * @param accountId Long
      * @param amountDto AmountDto
      * @return ResponseEntity

@@ -24,7 +24,7 @@ public class CustomerController {
     }
 
     /**
-     * This end point creates customer
+     * This endpoint creates customer
      * @param customerDto CustomerDto
      * @return ResponseEntity
      */
