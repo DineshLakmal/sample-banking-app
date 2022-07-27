@@ -1,6 +1,7 @@
 package com.banking.sample.repository;
 
 import com.banking.sample.domain.Customer;
+import com.banking.sample.exception.CommonException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -34,6 +35,9 @@ public class CustomerRepository {
 
         sql="insert into account(customer_id, currency_id, account_type, balance) values(:CUSTOMER_ID, :CURRENCY_ID, :ACCOUNT_TYPE, :BALANCE)";
         int accCreated=namedParameterJdbcTemplate.update(sql, accountParams);
+        if(accCreated!=1){
+            throw new CommonException("Error, account did not get created");
+        }
 
         return cusCreated;
     }
