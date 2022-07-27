@@ -23,6 +23,11 @@ public class CurrencyController {
         this.currencyService=currencyService;
     }
 
+    /**
+     * This end point creates currencies
+     * @param currencyDto CurrencyDto
+     * @return ResponseEntity
+     */
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody CurrencyDto currencyDto){
 

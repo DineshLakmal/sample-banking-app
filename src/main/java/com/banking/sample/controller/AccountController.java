@@ -18,6 +18,12 @@ public class AccountController {
         this.accountService = accountService;
     }
 
+    /**
+     * This endpoints deposit money into a given account
+     * @param accountId Long
+     * @param amountDto AmountDto
+     * @return ResponseEntity
+     */
     @PostMapping(value = "{accountId}/deposits", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deposit(@PathVariable Long accountId, @RequestBody AmountDto amountDto){
 
@@ -25,6 +31,13 @@ public class AccountController {
         return  ResponseEntity.status(HttpStatus.OK).body(balanceDto);
     }
 
+    /**
+     * This endpoint withdraws money from a given account
+     *
+     * @param accountId Long
+     * @param amountDto AmountDto
+     * @return ResponseEntity
+     */
     @PostMapping(value = "{accountId}/withdraws", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> withdraw(@PathVariable Long accountId, @RequestBody AmountDto amountDto){
 

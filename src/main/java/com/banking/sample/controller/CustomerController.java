@@ -23,6 +23,11 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    /**
+     * This end point creates customer
+     * @param customerDto CustomerDto
+     * @return ResponseEntity
+     */
    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
    public ResponseEntity<?> create(@RequestBody CustomerDto customerDto){
 
