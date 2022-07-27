@@ -1,7 +1,9 @@
 package com.banking.sample.controller;
 
+import com.banking.sample.constants.AppConstants;
 import com.banking.sample.dto.AmountDto;
 import com.banking.sample.dto.BalanceDto;
+import com.banking.sample.dto.ResponseDto;
 import com.banking.sample.service.AccountService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,7 +30,11 @@ public class AccountController {
     public ResponseEntity<?> deposit(@PathVariable Long accountId, @RequestBody AmountDto amountDto){
 
         BalanceDto balanceDto=accountService.deposit(accountId, amountDto.getAmount());
-        return  ResponseEntity.status(HttpStatus.OK).body(balanceDto);
+
+        ResponseDto responseDto=new ResponseDto();
+        responseDto.setMessage(AppConstants.SUCCESS_MSG);
+        responseDto.setResponseBody(balanceDto);
+        return  ResponseEntity.status(HttpStatus.OK).body(responseDto);
     }
 
     /**
@@ -42,6 +48,10 @@ public class AccountController {
     public ResponseEntity<?> withdraw(@PathVariable Long accountId, @RequestBody AmountDto amountDto){
 
         BalanceDto balanceDto=accountService.withdraw(accountId, amountDto.getAmount());
-        return  ResponseEntity.status(HttpStatus.OK).body(balanceDto);
+
+        ResponseDto responseDto=new ResponseDto();
+        responseDto.setMessage(AppConstants.SUCCESS_MSG);
+        responseDto.setResponseBody(balanceDto);
+        return  ResponseEntity.status(HttpStatus.OK).body(responseDto);
     }
 }
