@@ -27,7 +27,7 @@ public class AccountController {
      * @return ResponseEntity
      */
     @PostMapping(value = "{accountId}/deposits", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> deposit(@PathVariable Long accountId, @RequestBody AmountDto amountDto){
+    public ResponseEntity<ResponseDto> deposit(@PathVariable Long accountId, @RequestBody AmountDto amountDto){
 
         Account account=accountService.deposit(accountId, amountDto.getAmount());
 
@@ -45,7 +45,7 @@ public class AccountController {
      * @return ResponseEntity
      */
     @PostMapping(value = "{accountId}/withdraws", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> withdraw(@PathVariable Long accountId, @RequestBody AmountDto amountDto){
+    public ResponseEntity<ResponseDto> withdraw(@PathVariable Long accountId, @RequestBody AmountDto amountDto){
 
         Account account=accountService.withdraw(accountId, amountDto.getAmount());
 

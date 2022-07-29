@@ -34,7 +34,7 @@ public class CurrencyController {
      * @return ResponseEntity
      */
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> create(@RequestBody CurrencyDto currencyDto){
+    public ResponseEntity<ResponseDto> create(@RequestBody CurrencyDto currencyDto){
         Currency currency=objectMapper.convertValue(currencyDto, Currency.class);
         Currency currencyCreated=currencyService.createCurrency(currency);
 

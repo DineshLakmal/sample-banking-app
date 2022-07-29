@@ -35,7 +35,7 @@ public class CustomerController {
      * @return ResponseEntity
      */
    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-   public ResponseEntity<?> create(@RequestBody CustomerRegistrationDto customerRegistrationDto){
+   public ResponseEntity<ResponseDto> create(@RequestBody CustomerRegistrationDto customerRegistrationDto){
 
        Customer customer=objectMapper.convertValue(customerRegistrationDto, Customer.class);
        Account account=objectMapper.convertValue(customerRegistrationDto, Account.class);
