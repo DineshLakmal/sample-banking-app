@@ -1,12 +1,12 @@
 package com.banking.sample.service;
 
 import com.banking.sample.domain.Account;
-import com.banking.sample.dto.BalanceDto;
-import com.banking.sample.exception.CommonException;
 import com.banking.sample.exception.ValidationException;
 import com.banking.sample.repository.AccountRepository;
 import org.springframework.stereotype.Service;
-import java.util.Objects;
+
+import java.math.BigDecimal;
+import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -18,37 +18,29 @@ public class AccountService {
     }
 
 
-    public BalanceDto deposit(long accountId, double amount){
-
-        Account account= accountRepository.getAccount(accountId);
-        if(Objects.isNull(account))
-            throw new ValidationException("Account could not be found");
-
-        int updated=accountRepository.updateBalance(accountId, account.getBalance()+amount);
-        if(updated!=1)
-            throw new CommonException("Error updating...");
-
-        BalanceDto balanceDto=new BalanceDto();
-        balanceDto.setBalance(getBalance(accountId));
-        return balanceDto;
+    public void createAccount(Account account){
+         accountRepository.save(account);
     }
 
-    public BalanceDto withdraw(long accountId, double amount){
+    public Account deposit(long accountId, BigDecimal amount){
 
-        Account account= accountRepository.getAccount(accountId);
-        if(Objects.isNull(account))
+        Optional<Account> accountOp= accountRepository.findById(accountId);
+        if(accountOp.isEmpty())
             throw new ValidationException("Account could not be found");
 
-        int updated= accountRepository.updateBalance(accountId, account.getBalance()-amount);
-        if(updated!=1)
-            throw new CommonException("Error updating...");
-
-        BalanceDto balanceDto=new BalanceDto();
-        balanceDto.setBalance(getBalance(accountId));
-        return balanceDto;
+        Account account= accountOp.get();
+        account.setBalance(account.getBalance().add(amount));
+        return accountRepository.save(account);
     }
 
-    public double getBalance(long accountId) {
-        return accountRepository.getAccount(accountId).getBalance();
+    public Account withdraw(long accountId, BigDecimal amount){
+
+        Optional<Account> accountOp= accountRepository.findById(accountId);
+        if(accountOp.isEmpty())
+            throw new ValidationException("Account could not be found");
+
+        Account account= accountOp.get();
+        account.setBalance(account.getBalance().subtract(amount));
+        return accountRepository.save(account);
     }
 }

@@ -3,11 +3,10 @@ package com.banking.sample.dto;
 import lombok.Data;
 
 @Data
-public class CustomerDto {
+public class CustomerRegistrationDto {
 
     private String firstName;
     private String lastName;
-    private String accountType;
     private double balance;
     private long currencyId;
 }
