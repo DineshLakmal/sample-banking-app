@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Objects;
-
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
@@ -39,17 +37,10 @@ public class CustomerController {
 
        Customer customer=objectMapper.convertValue(customerRegistrationDto, Customer.class);
        Account account=objectMapper.convertValue(customerRegistrationDto, Account.class);
-
        Customer customerCreated=customerService.createCustomer(customer, account);
-       String msg;
-       if(Objects.nonNull(customerCreated)){
-           msg=AppConstants.SUCCESS_MSG;
-       }else{
-           msg=AppConstants.ERROR_MSG;
-       }
 
        ResponseDto responseDto=new ResponseDto();
-       responseDto.setMessage(msg);
+       responseDto.setMessage(AppConstants.SUCCESS_MSG);
        responseDto.setResponseBody(customerCreated);
 
        return  ResponseEntity.status(HttpStatus.CREATED).body(responseDto);

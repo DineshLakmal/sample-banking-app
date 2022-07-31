@@ -34,7 +34,7 @@ public class AccountController {
         ResponseDto responseDto=new ResponseDto();
         responseDto.setMessage(AppConstants.SUCCESS_MSG);
         responseDto.setResponseBody(account);
-        return  ResponseEntity.status(HttpStatus.OK).body(responseDto);
+        return ResponseEntity.status(HttpStatus.OK).body(responseDto);
     }
 
     /**

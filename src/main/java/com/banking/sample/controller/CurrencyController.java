@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Objects;
-
 @RestController
 @RequestMapping("/currencies")
 public class CurrencyController {
@@ -38,15 +36,8 @@ public class CurrencyController {
         Currency currency=objectMapper.convertValue(currencyDto, Currency.class);
         Currency currencyCreated=currencyService.createCurrency(currency);
 
-        String msg;
-        if(Objects.isNull(currencyCreated)){
-            msg= AppConstants.SUCCESS_MSG;
-        }else{
-            msg=AppConstants.ERROR_MSG;
-        }
-
         ResponseDto responseDto=new ResponseDto();
-        responseDto.setMessage(msg);
+        responseDto.setMessage(AppConstants.SUCCESS_MSG);
         responseDto.setResponseBody(currencyCreated);
 
         return  ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
