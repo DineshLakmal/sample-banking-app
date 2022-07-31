@@ -1,6 +1,7 @@
 package com.banking.sample.domain;
 
 import lombok.Data;
+
 import javax.persistence.*;
 
 @Data

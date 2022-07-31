@@ -5,6 +5,7 @@ import com.banking.sample.enums.OperationType;
 import com.banking.sample.exception.ValidationException;
 import com.banking.sample.repository.AccountRepository;
 import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 import java.util.Optional;
 
