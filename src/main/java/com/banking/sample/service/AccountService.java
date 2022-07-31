@@ -38,10 +38,10 @@ public class AccountService {
             throw new ValidationException("Account could not be found");
 
         Account account= accountOp.get();
-        if(operationType.name().equals("DEPOSIT")){
+        if(operationType.equals(OperationType.DEPOSIT)){
 
             account.setBalance(account.getBalance().add(amount));
-        }else if(operationType.name().equals("WITHDRAW")){
+        }else if(operationType.equals(OperationType.WITHDRAW)){
 
             BigDecimal newBalance=account.getBalance().subtract(amount);
             BigDecimal minBalance=new BigDecimal("0.0");
